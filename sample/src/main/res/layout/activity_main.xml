@@ -1,0 +1,21 @@
+<RelativeLayout android:id="@+id/main_layout"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
+
+
+    <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_swipe">
+
+        <ListView
+            android:id="@+id/main_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
+
+</RelativeLayout>

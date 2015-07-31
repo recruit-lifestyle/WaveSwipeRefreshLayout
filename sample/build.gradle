@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion as Integer
+  buildToolsVersion rootProject.ext.buildToolsVersion as String
+
+  defaultConfig {
+    applicationId "jp.co.recruit_lifestyle.sample"
+    minSdkVersion rootProject.ext.minSdkVersion as Integer
+    targetSdkVersion rootProject.ext.targetSdkVersion as Integer
+    versionCode rootProject.ext.versionCode as Integer
+    versionName rootProject.ext.versionName as String
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+dependencies {
+  compile 'com.android.support:appcompat-v7:22.2.0'
+  compile project(':library')
+}
