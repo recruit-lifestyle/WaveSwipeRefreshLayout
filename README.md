@@ -1,6 +1,7 @@
 # WaveSwipeRefreshLayout
 
 [![Release](https://img.shields.io/github/release/recruit-lifestyle/WaveSwipeRefreshLayout.svg?label=maven version)](https://github.com/recruit-lifestyle/WaveSwipeRefreshLayout)
+[![License](https://img.shields.io/hexpm/l/plug.svg)]()
 
 This project aims to provide a reusable WaveSwipe to Refresh widget for Android.  
 Even if this works fine with API.13 or less, we support only for API.14 or more.
