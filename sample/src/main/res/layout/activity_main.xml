@@ -1,21 +1,56 @@
-<RelativeLayout android:id="@+id/main_layout"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".MainActivity">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    >
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="25dip"
+      android:background="@color/primary_dark"
+      />
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      >
+
+    <Toolbar
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:id="@+id/toolbar"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/toolbar_dropshadow"
+        android:layout_below="@+id/toolbar"
+        />
 
 
     <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_swipe">
+        android:id="@+id/main_swipe"
+        android:layout_below="@+id/toolbar"
+        >
 
-        <ListView
-            android:id="@+id/main_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+      <ListView
+          android:id="@+id/main_list"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          />
 
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 
-</RelativeLayout>
+  </RelativeLayout>
+
+</LinearLayout>

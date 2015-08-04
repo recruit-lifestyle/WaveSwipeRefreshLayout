@@ -180,6 +180,7 @@ public class WaveSwipeRefreshLayout extends ViewGroup
     mTarget.measure(
         makeMeasureSpecExactly(getMeasuredWidth() - (getPaddingLeft() + getPaddingRight())),
         makeMeasureSpecExactly(getMeasuredHeight() - (getPaddingTop() + getPaddingBottom())));
+    mWaveView.measure(widthMeasureSpec, heightMeasureSpec);
 
     mCircleView.measure();
   }
@@ -203,7 +204,7 @@ public class WaveSwipeRefreshLayout extends ViewGroup
     mCircleView.layout((thisWidth - circleWidth) / 2, -circleHeight, (thisWidth + circleWidth) / 2,
         0);
 
-    mWaveView.layout(left, top, right, bottom);
+    mWaveView.layout(getPaddingLeft(), getPaddingTop(), childRight, childBottom);
   }
 
   @Override public boolean onPreDraw() {

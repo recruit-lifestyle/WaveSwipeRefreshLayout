@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
@@ -20,9 +22,11 @@ public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshL
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
 
+    setContentView(R.layout.activity_main);
     initView();
     setSampleData();
   }
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshL
   private void setSampleData() {
     ArrayList<String> sampleArrayStr = new ArrayList<>();
     for (int i = 0; i < 60; i++) {
-      sampleArrayStr.add("sample" + i);
+      sampleArrayStr.add("" );
     }
     ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, sampleArrayStr);
     mListview.setAdapter(adapter);
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshL
         // 更新が終了したらインジケータ非表示
         mWaveSwipeRefreshLayout.setRefreshing(false);
       }
-    }, 5000);
+    }, 3000);
   }
 
   @Override

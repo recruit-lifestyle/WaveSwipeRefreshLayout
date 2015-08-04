@@ -20,7 +20,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -345,7 +344,7 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
 
   private void setUpPaint() {
     mPaint = new Paint();
-    mPaint.setColor(Color.BLUE);
+    mPaint.setColor(0xff2196F3);
     mPaint.setAntiAlias(true);
     mPaint.setStyle(Paint.Style.FILL);
 
