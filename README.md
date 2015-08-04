@@ -9,7 +9,7 @@ Even if this works fine with API.13 or less, we support only for API.14 or more.
 
 ##Screenshots
 *Watch YouTube video [here](https://www.youtube.com/watch?v=aGeeLE9vxY4&feature=youtu.be).*
-
+![](./sc/animation.gif)
 <img src="./sc/sc1.png" width="200">
 <img src="./sc/sc2.png" width="200">
 <img src="./sc/sc3.png" width="200">
