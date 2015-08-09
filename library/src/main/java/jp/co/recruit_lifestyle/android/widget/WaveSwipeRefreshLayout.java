@@ -646,6 +646,10 @@ public class WaveSwipeRefreshLayout extends ViewGroup
     mWaveView.setShadowRadius(radius);
   }
 
+  public void setWaveColor(int color){
+    mWaveView.setWaveColor(color);
+  }
+
   private static int makeMeasureSpecExactly(int length) {
     return MeasureSpec.makeMeasureSpec(length, MeasureSpec.EXACTLY);
   }

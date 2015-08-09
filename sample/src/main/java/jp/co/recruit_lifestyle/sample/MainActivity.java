@@ -13,7 +13,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
-
 public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshLayout.OnRefreshListener {
 
   private ListView mListview;
@@ -35,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshL
     mWaveSwipeRefreshLayout = (WaveSwipeRefreshLayout) findViewById(R.id.main_swipe);
     mWaveSwipeRefreshLayout.setColorSchemeColors(Color.WHITE, Color.WHITE);
     mWaveSwipeRefreshLayout.setOnRefreshListener(this);
+    mWaveSwipeRefreshLayout.setWaveColor(0x00000000);
     //mWaveSwipeRefreshLayout.setMaxDropHeight(1500);
 
     mListview = (ListView) findViewById(R.id.main_list);

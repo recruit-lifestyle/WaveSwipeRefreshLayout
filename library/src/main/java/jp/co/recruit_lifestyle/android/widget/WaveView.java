@@ -630,4 +630,9 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
   public void setShadowRadius(int radius) {
     mShadowPaint.setShadowLayer(radius, 0.0f, 2.0f, SHADOW_COLOR);
   }
+
+  public void setWaveColor(int color) {
+    mPaint.setColor(color);
+    invalidate();
+  }
 }
