@@ -16,11 +16,11 @@
 
   <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="0dp"
       android:layout_weight="1"
       >
 
-    <Toolbar
+    <android.support.v7.widget.Toolbar
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"

@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.1'
+  compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.2'
 }
 ```  
 
