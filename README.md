@@ -1,5 +1,5 @@
 # WaveSwipeRefreshLayout
-
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-WaveSwipeRefreshLayout-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2229)
 [![Release](https://img.shields.io/github/release/recruit-lifestyle/WaveSwipeRefreshLayout.svg?label=maven version)](https://github.com/recruit-lifestyle/WaveSwipeRefreshLayout)
 [![License](https://img.shields.io/hexpm/l/plug.svg)]()
 
