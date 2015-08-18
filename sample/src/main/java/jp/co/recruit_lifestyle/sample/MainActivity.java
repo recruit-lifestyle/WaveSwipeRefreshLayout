@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshL
 
   @Override
   protected void onResume() {
-    mWaveSwipeRefreshLayout.setRefreshing(true);
+    //mWaveSwipeRefreshLayout.setRefreshing(true);
     refresh();
     super.onResume();
   }

@@ -257,11 +257,11 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
     //引っ張ってる最中の波と終わったあとの波
     canvas.drawPath(mWavePath, mShadowPaint);
     canvas.drawPath(mWavePath, mPaint);
-    mWavePath.reset();
+    mWavePath.rewind();
 
     //円が落ちる部分の描画
-    mDropTangentPath.reset();
-    mDropCirclePath.reset();
+    mDropTangentPath.rewind();
+    mDropCirclePath.rewind();
     float circleCenterY = (Float) mDropCircleAnimator.getAnimatedValue();
     float circleCenterX = mWidth / 2.f;
     mDropRect.setEmpty();
@@ -517,6 +517,10 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
   }
 
   public void startDropAnimation() {
+    mDisappearCircleAnimator = ValueAnimator.ofFloat(1.f, 1.f);
+    mDisappearCircleAnimator.setDuration(1);
+    mDisappearCircleAnimator.start();
+
     mDropCircleAnimator = ValueAnimator.ofFloat(500 * (mWidth / 1440.f), mMaxDropHeight);
     mDropCircleAnimator.setDuration(DROP_CIRCLE_ANIMATOR_DURATION);
     mDropCircleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
