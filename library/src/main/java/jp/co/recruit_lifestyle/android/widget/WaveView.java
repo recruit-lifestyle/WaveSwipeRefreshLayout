@@ -517,8 +517,9 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
   }
 
   public void startDropAnimation() {
+    // show dropBubble again
     mDisappearCircleAnimator = ValueAnimator.ofFloat(1.f, 1.f);
-    mDisappearCircleAnimator.setDuration(1);
+    mDisappearCircleAnimator.setDuration(1); 
     mDisappearCircleAnimator.start();
 
     mDropCircleAnimator = ValueAnimator.ofFloat(500 * (mWidth / 1440.f), mMaxDropHeight);
