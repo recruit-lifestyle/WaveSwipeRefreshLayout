@@ -644,4 +644,9 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
     mPaint.setColor(color);
     invalidate();
   }
+
+  public void setWaveARGBColor(int a, int r, int g, int b){
+    mPaint.setARGB(a,r,g,b);
+    invalidate();
+  }
 }
