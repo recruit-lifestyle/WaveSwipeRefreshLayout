@@ -3,4 +3,6 @@
 
   <string name="hello_world">Hello world!</string>
   <string name="action_refresh">Refresh</string>
+
+  <string name="btn_change_color">Change the color</string>
 </resources>

@@ -640,6 +640,11 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
     mShadowPaint.setShadowLayer(radius, 0.0f, 2.0f, SHADOW_COLOR);
   }
 
+  /**
+   * WaveView is colored by given color (including alpha)
+   * @param color ARGB color. WaveView will be colored by Black if rgb color is provided.
+   * @see Paint#setColor(int)
+   */
   public void setWaveColor(int color) {
     mPaint.setColor(color);
     invalidate();

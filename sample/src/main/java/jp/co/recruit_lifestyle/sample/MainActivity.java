@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
@@ -41,6 +43,13 @@ public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshL
     //mWaveSwipeRefreshLayout.setMaxDropHeight(1500);
 
     mListview = (ListView) findViewById(R.id.main_list);
+
+    findViewById(R.id.button_of_wave_color).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        mWaveSwipeRefreshLayout.setWaveColor(0xFF000000+new Random().nextInt(0xFFFFFF)); // Random assign
+      }
+    });
 
     ((SeekBar) findViewById(R.id.seekbar_of_drop_height)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
       @Override
