@@ -622,6 +622,10 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
     } else {
       mUpdateMaxDropHeight = maxDropHeight;
       mDropHeightUpdated = true;
+      if (getViewTreeObserver().isAlive()) {
+        getViewTreeObserver().removeOnPreDrawListener(this);
+        getViewTreeObserver().addOnPreDrawListener(this);
+      }
     }
   }
 
