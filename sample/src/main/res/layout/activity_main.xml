@@ -59,6 +59,13 @@
         android:layout_alignParentBottom="true"
         />
 
+    <Button
+        android:id="@+id/button_of_wave_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/seekbar_of_drop_height"
+        android:text="@string/btn_change_color" />
+
   </RelativeLayout>
 
 </LinearLayout>
