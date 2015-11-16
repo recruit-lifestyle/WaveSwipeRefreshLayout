@@ -10,7 +10,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SeekBar;
+
 import java.util.ArrayList;
+
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshLayout.OnRefreshListener {
@@ -38,6 +41,24 @@ public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshL
     //mWaveSwipeRefreshLayout.setMaxDropHeight(1500);
 
     mListview = (ListView) findViewById(R.id.main_list);
+
+    ((SeekBar) findViewById(R.id.seekbar_of_drop_height)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+      @Override
+      public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        // ignore
+      }
+
+      @Override
+      public void onStartTrackingTouch(SeekBar seekBar) {
+        // ignore
+      }
+
+      @Override
+      public void onStopTrackingTouch(SeekBar seekBar) {
+        float scale = (seekBar.getProgress() / 100f);
+        mWaveSwipeRefreshLayout.setMaxDropHeight((int) (mWaveSwipeRefreshLayout.getHeight() * scale));
+      }
+    });
   }
 
   private void setSampleData() {
