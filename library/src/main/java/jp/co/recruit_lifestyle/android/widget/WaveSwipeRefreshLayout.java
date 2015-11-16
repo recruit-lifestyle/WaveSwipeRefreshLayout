@@ -646,10 +646,32 @@ public class WaveSwipeRefreshLayout extends ViewGroup
     mWaveView.setShadowRadius(radius);
   }
 
-  public void setWaveColor(int color){
-    mWaveView.setWaveColor(color);
+  /**
+   * This is an alias to WaveView#setWaveColor(int)
+   * @see WaveView#setWaveColor(int)
+   */
+  public void setWaveColor(int argbColor){
+    mWaveView.setWaveColor(argbColor);
   }
 
+  /**
+   * WaveView is colored by given rgb color + 0xFF000000
+   * @param r int [0, 0xFF]
+   * @param g int [0, 0xFF]
+   * @param b int [0, 0xFF]
+   */
+  public void setWaveRGBColor(int r, int g, int b) {
+    mWaveView.setWaveColor(Color.argb(0xFF, r, g, b));
+  }
+
+  /**
+   * This is an alias to WaveView#setWaveARGBColor(int)
+   * @param a int [0, 0xFF]
+   * @param r int [0, 0xFF]
+   * @param g int [0, 0xFF]
+   * @param b int [0, 0xFF]
+   * @see WaveView#setWaveARGBColor(int, int, int, int)
+   */
   public void setWaveARGBColor(int a, int r, int g, int b) {
     mWaveView.setWaveARGBColor(a, r, g, b);
   }
