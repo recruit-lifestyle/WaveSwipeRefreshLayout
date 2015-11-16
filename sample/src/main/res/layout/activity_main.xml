@@ -51,6 +51,14 @@
 
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 
+    <SeekBar
+        android:id="@+id/seekbar_of_drop_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:layout_alignParentBottom="true"
+        />
+
   </RelativeLayout>
 
 </LinearLayout>

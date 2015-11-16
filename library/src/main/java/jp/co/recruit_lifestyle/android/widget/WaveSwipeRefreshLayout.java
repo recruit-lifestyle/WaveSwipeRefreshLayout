@@ -650,6 +650,10 @@ public class WaveSwipeRefreshLayout extends ViewGroup
     mWaveView.setWaveColor(color);
   }
 
+  public void setWaveARGBColor(int a, int r, int g, int b) {
+    mWaveView.setWaveARGBColor(a, r, g, b);
+  }
+
   private static int makeMeasureSpecExactly(int length) {
     return MeasureSpec.makeMeasureSpec(length, MeasureSpec.EXACTLY);
   }

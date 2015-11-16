@@ -622,6 +622,10 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
     } else {
       mUpdateMaxDropHeight = maxDropHeight;
       mDropHeightUpdated = true;
+      if (getViewTreeObserver().isAlive()) {
+        getViewTreeObserver().removeOnPreDrawListener(this);
+        getViewTreeObserver().addOnPreDrawListener(this);
+      }
     }
   }
 
@@ -638,6 +642,11 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
 
   public void setWaveColor(int color) {
     mPaint.setColor(color);
+    invalidate();
+  }
+
+  public void setWaveARGBColor(int a, int r, int g, int b){
+    mPaint.setARGB(a,r,g,b);
     invalidate();
   }
 }
