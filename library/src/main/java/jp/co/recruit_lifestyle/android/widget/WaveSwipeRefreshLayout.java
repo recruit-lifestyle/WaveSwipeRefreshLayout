@@ -127,6 +127,8 @@ public class WaveSwipeRefreshLayout extends ViewGroup
 
   private int mActivePointerId = INVALID_POINTER;
 
+  private int mTopOffset;
+
   /**
    * Constructor
    * {@inheritDoc}
@@ -199,12 +201,32 @@ public class WaveSwipeRefreshLayout extends ViewGroup
     final int childBottom = thisHeight - getPaddingBottom();
     mTarget.layout(getPaddingLeft(), getPaddingTop(), childRight, childBottom);
 
+    layoutWaveView();
+  }
+
+
+  private void layoutWaveView(){
+    if (mWaveView == null) {
+      return;
+    }
+    final int thisWidth = getMeasuredWidth();
+    final int thisHeight = getMeasuredHeight();
+
     final int circleWidth = mCircleView.getMeasuredWidth();
     final int circleHeight = mCircleView.getMeasuredHeight();
-    mCircleView.layout((thisWidth - circleWidth) / 2, -circleHeight, (thisWidth + circleWidth) / 2,
-        0);
+    mCircleView.layout((thisWidth - circleWidth) / 2, -circleHeight + mTopOffset, (thisWidth + circleWidth) / 2,
+            mTopOffset);
+    final int childRight = thisWidth - getPaddingRight();
+    final int childBottom = thisHeight - getPaddingBottom();
+    mWaveView.layout(getPaddingLeft(), mTopOffset + getPaddingTop(), childRight, childBottom);
+  }
 
-    mWaveView.layout(getPaddingLeft(), getPaddingTop(), childRight, childBottom);
+  public void setTopOffsetOfWave(int topOffset) {
+    if (topOffset < 0) {
+      return;
+    }
+    mTopOffset = topOffset;
+    layoutWaveView();
   }
 
   @Override public boolean onPreDraw() {

@@ -40,7 +40,17 @@ public class MainActivity extends AppCompatActivity implements WaveSwipeRefreshL
     mWaveSwipeRefreshLayout.setColorSchemeColors(Color.WHITE, Color.WHITE);
     mWaveSwipeRefreshLayout.setOnRefreshListener(this);
     mWaveSwipeRefreshLayout.setWaveColor(0x00000000);
+
     //mWaveSwipeRefreshLayout.setMaxDropHeight(1500);
+
+    /*TypedValue tv = new TypedValue();
+    int actionBarHeight = 0;
+    if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true))
+    {
+      actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,getResources().getDisplayMetrics());
+    }
+    mWaveSwipeRefreshLayout.setTopOffsetOfWave(actionBarHeight);*/
+
 
     mListview = (ListView) findViewById(R.id.main_list);
 
