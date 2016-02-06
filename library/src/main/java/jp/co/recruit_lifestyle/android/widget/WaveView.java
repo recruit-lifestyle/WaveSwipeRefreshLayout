@@ -33,7 +33,7 @@ import android.view.animation.BounceInterpolator;
 /**
  * @author amyu
  *
- * 波と落ちる円を描画するView
+ *         波と落ちる円を描画するView
  */
 public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener {
 
@@ -464,10 +464,10 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
             Math.max(BEGIN_PHASE_POINTS[2][1] + move1 - move2, APPEAR_PHASE_POINTS[2][1]) + move3,
             EXPAND_PHASE_POINTS[2][1]));
     mWavePath.cubicTo(mWidth * Math.min(
-            Math.max(BEGIN_PHASE_POINTS[3][0] - move2, APPEAR_PHASE_POINTS[3][0]) + move3,
-            EXPAND_PHASE_POINTS[3][0]), mWidth * Math.min(
-            Math.min(BEGIN_PHASE_POINTS[3][1] + move1 + move2, APPEAR_PHASE_POINTS[3][1]) + move3,
-            EXPAND_PHASE_POINTS[3][1]),
+        Math.max(BEGIN_PHASE_POINTS[3][0] - move2, APPEAR_PHASE_POINTS[3][0]) + move3,
+        EXPAND_PHASE_POINTS[3][0]), mWidth * Math.min(
+        Math.min(BEGIN_PHASE_POINTS[3][1] + move1 + move2, APPEAR_PHASE_POINTS[3][1]) + move3,
+        EXPAND_PHASE_POINTS[3][1]),
         mWidth * Math.max(BEGIN_PHASE_POINTS[4][0] - move2, EXPAND_PHASE_POINTS[4][0]),
         mWidth * Math.min(
             Math.min(BEGIN_PHASE_POINTS[4][1] + move1 + move2, APPEAR_PHASE_POINTS[4][1]) + move3,
@@ -490,10 +490,10 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
             Math.max(BEGIN_PHASE_POINTS[2][1] + move1 - move2, APPEAR_PHASE_POINTS[2][1]) + move3,
             EXPAND_PHASE_POINTS[2][1]));
     mWavePath.cubicTo(mWidth - mWidth * Math.min(
-            Math.min(BEGIN_PHASE_POINTS[1][0] + move2, APPEAR_PHASE_POINTS[1][0]) + move3,
-            EXPAND_PHASE_POINTS[1][0]), mWidth * Math.max(
-            Math.max(BEGIN_PHASE_POINTS[1][1] + move1 - move2, APPEAR_PHASE_POINTS[1][1]) - move3,
-            EXPAND_PHASE_POINTS[1][1]), mWidth - mWidth * EXPAND_PHASE_POINTS[0][0],
+        Math.min(BEGIN_PHASE_POINTS[1][0] + move2, APPEAR_PHASE_POINTS[1][0]) + move3,
+        EXPAND_PHASE_POINTS[1][0]), mWidth * Math.max(
+        Math.max(BEGIN_PHASE_POINTS[1][1] + move1 - move2, APPEAR_PHASE_POINTS[1][1]) - move3,
+        EXPAND_PHASE_POINTS[1][1]), mWidth - mWidth * EXPAND_PHASE_POINTS[0][0],
         mWidth * EXPAND_PHASE_POINTS[0][1], mWidth, 0);
     mCurrentCircleCenterY = mWidth * Math.min(
         Math.min(BEGIN_PHASE_POINTS[3][1] + move1 + move2, APPEAR_PHASE_POINTS[3][1]) + move3,
@@ -519,7 +519,7 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
   public void startDropAnimation() {
     // show dropBubble again
     mDisappearCircleAnimator = ValueAnimator.ofFloat(1.f, 1.f);
-    mDisappearCircleAnimator.setDuration(1); 
+    mDisappearCircleAnimator.setDuration(1);
     mDisappearCircleAnimator.start();
 
     mDropCircleAnimator = ValueAnimator.ofFloat(500 * (mWidth / 1440.f), mMaxDropHeight);
@@ -642,6 +642,7 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
 
   /**
    * WaveView is colored by given color (including alpha)
+   *
    * @param color ARGB color. WaveView will be colored by Black if rgb color is provided.
    * @see Paint#setColor(int)
    */
@@ -650,8 +651,8 @@ public class WaveView extends View implements ViewTreeObserver.OnPreDrawListener
     invalidate();
   }
 
-  public void setWaveARGBColor(int a, int r, int g, int b){
-    mPaint.setARGB(a,r,g,b);
+  public void setWaveARGBColor(int a, int r, int g, int b) {
+    mPaint.setARGB(a, r, g, b);
     invalidate();
   }
 }

@@ -204,8 +204,7 @@ public class WaveSwipeRefreshLayout extends ViewGroup
     layoutWaveView();
   }
 
-
-  private void layoutWaveView(){
+  private void layoutWaveView() {
     if (mWaveView == null) {
       return;
     }
@@ -214,8 +213,8 @@ public class WaveSwipeRefreshLayout extends ViewGroup
 
     final int circleWidth = mCircleView.getMeasuredWidth();
     final int circleHeight = mCircleView.getMeasuredHeight();
-    mCircleView.layout((thisWidth - circleWidth) / 2, -circleHeight + mTopOffset, (thisWidth + circleWidth) / 2,
-            mTopOffset);
+    mCircleView.layout((thisWidth - circleWidth) / 2, -circleHeight + mTopOffset,
+        (thisWidth + circleWidth) / 2, mTopOffset);
     final int childRight = thisWidth - getPaddingRight();
     final int childBottom = thisHeight - getPaddingBottom();
     mWaveView.layout(getPaddingLeft(), mTopOffset + getPaddingTop(), childRight, childBottom);
@@ -670,14 +669,20 @@ public class WaveSwipeRefreshLayout extends ViewGroup
 
   /**
    * This is an alias to WaveView#setWaveColor(int)
+   *
    * @see WaveView#setWaveColor(int)
    */
-  public void setWaveColor(int argbColor){
-    mWaveView.setWaveColor(argbColor);
+  public void setWaveColor(int argbColor) {
+    int alpha = 0xFF & (argbColor >> 24);
+    int red = 0xFF & ( argbColor >> 16);
+    int blue = 0xFF & (argbColor >> 0 );
+    int green = 0xFF & (argbColor >> 8 );
+    setWaveARGBColor(alpha, red, green, blue);
   }
 
   /**
    * WaveView is colored by given rgb color + 0xFF000000
+   *
    * @param r int [0, 0xFF]
    * @param g int [0, 0xFF]
    * @param b int [0, 0xFF]
@@ -688,6 +693,7 @@ public class WaveSwipeRefreshLayout extends ViewGroup
 
   /**
    * This is an alias to WaveView#setWaveARGBColor(int)
+   *
    * @param a int [0, 0xFF]
    * @param r int [0, 0xFF]
    * @param g int [0, 0xFF]
@@ -695,7 +701,11 @@ public class WaveSwipeRefreshLayout extends ViewGroup
    * @see WaveView#setWaveARGBColor(int, int, int, int)
    */
   public void setWaveARGBColor(int a, int r, int g, int b) {
-    mWaveView.setWaveARGBColor(a, r, g, b);
+    setWaveRGBColor(r, g, b);
+    if (a == 0xFF) {
+      return;
+    }
+    mWaveView.setAlpha((float) a / 255f);
   }
 
   private static int makeMeasureSpecExactly(int length) {
