@@ -100,6 +100,8 @@ public class WaveSwipeRefreshLayout extends ViewGroup
    */
   private STATE mState = STATE.PENDING;
 
+  private boolean mInternalEnabled = true;
+
   private EVENT_PHASE mEventPhase = EVENT_PHASE.WAITING;
 
   /**
@@ -247,11 +249,14 @@ public class WaveSwipeRefreshLayout extends ViewGroup
   @Override public boolean onInterceptTouchEvent(@NonNull MotionEvent event) {
     ensureTarget();
 
-    if (!isEnabled() || canChildScrollUp() || isRefreshing()) {
+    if (!isEnabled() || !mInternalEnabled || canChildScrollUp() || isRefreshing()) {
       return false;
     }
 
     final int action = MotionEventCompat.getActionMasked(event);
+
+    if (MotionEventCompat.getPointerCount(event) > 1)
+      return false;
 
     switch (action) {
       case MotionEvent.ACTION_DOWN:
@@ -405,12 +410,12 @@ public class WaveSwipeRefreshLayout extends ViewGroup
     setRefreshing(true, true);
     mIsBeingDropped = true;
     setEventPhase(EVENT_PHASE.DROPPING);
-    setEnabled(false);
+    mInternalEnabled = false;
   }
 
   @Override public boolean onTouchEvent(@NonNull MotionEvent event) {
 
-    if (!isEnabled() || canChildScrollUp()) {
+    if (!isEnabled() || !mInternalEnabled || canChildScrollUp()) {
       return false;
     }
     mIsBeingDropped = mWaveView.isDisappearCircleAnimatorRunning();
@@ -545,7 +550,7 @@ public class WaveSwipeRefreshLayout extends ViewGroup
 
   private void setState(STATE state) {
     mState = state;
-    setEnabled(true);
+    mInternalEnabled = true;
     if (!isRefreshing()) {
       setEventPhase(EVENT_PHASE.WAITING);
     }
@@ -625,9 +630,9 @@ public class WaveSwipeRefreshLayout extends ViewGroup
       mNotify = false;
 
       mIsManualRefresh = true;
-      if (mWaveView.getCurrentCircleCenterY() == 0) {
-        return;
-      }
+//      if (mWaveView.getCurrentCircleCenterY() == 0) {
+//        return;
+//      }
       mWaveView.manualRefresh();
       reInitCircleView();
       mCircleView.setTranslationY(
