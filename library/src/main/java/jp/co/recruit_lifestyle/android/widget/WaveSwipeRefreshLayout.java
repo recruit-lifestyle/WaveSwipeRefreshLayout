@@ -25,6 +25,8 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -660,8 +662,36 @@ public class WaveSwipeRefreshLayout extends ViewGroup
         return mTarget.getScrollY() > 0;
       }
     } else {
+      final RecyclerView recyclerView = findRecyclerViewRecursively(mTarget);
+      if (recyclerView != null
+        && recyclerView.getAdapter() != null
+        && recyclerView.getAdapter().getItemCount() > 0
+        && recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+        final LinearLayoutManager linearLayoutManager = (LinearLayoutManager)recyclerView.getLayoutManager();
+        return linearLayoutManager.findFirstCompletelyVisibleItemPosition() > 0;
+      }
       return ViewCompat.canScrollVertically(mTarget, -1);
     }
+  }
+
+  private RecyclerView findRecyclerViewRecursively(View view) {
+    if (view instanceof RecyclerView) {
+      return (RecyclerView)view;
+    }
+
+    if (view instanceof ViewGroup) {
+      final ViewGroup parent = (ViewGroup)view;
+
+      for (int i = 0; i < parent.getChildCount(); i++) {
+        final RecyclerView child = findRecyclerViewRecursively(parent.getChildAt(i));
+
+        if (child != null) {
+          return child;
+        }
+      }
+    }
+
+    return null;
   }
 
   /**
