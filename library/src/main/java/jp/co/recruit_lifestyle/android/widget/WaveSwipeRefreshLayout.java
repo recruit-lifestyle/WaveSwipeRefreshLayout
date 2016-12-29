@@ -427,7 +427,7 @@ public class WaveSwipeRefreshLayout extends ViewGroup
         return pointerIndex >= 0 && onMoveTouchEvent(event, pointerIndex);
 
       case MotionEvent.ACTION_UP:
-        if (mIsBeingDropped) {
+        if (mIsBeingDropped || mActivePointerId == INVALID_POINTER) {
           mIsBeingDropped = false;
           return false;
         }
@@ -542,6 +542,10 @@ public class WaveSwipeRefreshLayout extends ViewGroup
 
   private void setEventPhase(EVENT_PHASE eventPhase) {
     mEventPhase = eventPhase;
+
+    if (eventPhase == EVENT_PHASE.DROPPING) {
+      mActivePointerId = INVALID_POINTER;
+    }
   }
 
   private void setState(STATE state) {
