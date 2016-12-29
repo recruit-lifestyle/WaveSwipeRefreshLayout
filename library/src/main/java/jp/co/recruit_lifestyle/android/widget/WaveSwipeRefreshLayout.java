@@ -20,7 +20,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.support.annotation.IdRes;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
@@ -574,14 +575,14 @@ public class WaveSwipeRefreshLayout extends ViewGroup
   /**
    * @param colorResIds ColorのId達
    */
-  public void setColorSchemeResources(@IdRes int... colorResIds) {
+  public void setColorSchemeResources(@ColorRes int... colorResIds) {
     mCircleView.setProgressColorSchemeColorsFromResource(colorResIds);
   }
 
   /**
    * @param colors セットするColor達
    */
-  public void setColorSchemeColors(int... colors) {
+  public void setColorSchemeColors(@ColorInt int... colors) {
     // FIXME Add @NonNull to the argument
     ensureTarget();
     mCircleView.setProgressColorSchemeColors(colors);
@@ -793,11 +794,11 @@ public class WaveSwipeRefreshLayout extends ViewGroup
       mProgress.stop();
     }
 
-    public void setProgressColorSchemeColors(@NonNull int... colors) {
+    public void setProgressColorSchemeColors(@NonNull @ColorInt int... colors) {
       mProgress.setColorSchemeColors(colors);
     }
 
-    public void setProgressColorSchemeColorsFromResource(@IdRes int... resources) {
+    public void setProgressColorSchemeColorsFromResource(@ColorRes int... resources) {
       final Resources res = getResources();
       final int[] colorRes = new int[resources.length];
 
