@@ -20,10 +20,13 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.support.annotation.IdRes;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -426,7 +429,7 @@ public class WaveSwipeRefreshLayout extends ViewGroup
         return pointerIndex >= 0 && onMoveTouchEvent(event, pointerIndex);
 
       case MotionEvent.ACTION_UP:
-        if (mIsBeingDropped) {
+        if (mIsBeingDropped || mActivePointerId == INVALID_POINTER) {
           mIsBeingDropped = false;
           return false;
         }
@@ -541,6 +544,10 @@ public class WaveSwipeRefreshLayout extends ViewGroup
 
   private void setEventPhase(EVENT_PHASE eventPhase) {
     mEventPhase = eventPhase;
+
+    if (eventPhase == EVENT_PHASE.DROPPING) {
+      mActivePointerId = INVALID_POINTER;
+    }
   }
 
   private void setState(STATE state) {
@@ -574,14 +581,14 @@ public class WaveSwipeRefreshLayout extends ViewGroup
   /**
    * @param colorResIds ColorのId達
    */
-  public void setColorSchemeResources(@IdRes int... colorResIds) {
+  public void setColorSchemeResources(@ColorRes int... colorResIds) {
     mCircleView.setProgressColorSchemeColorsFromResource(colorResIds);
   }
 
   /**
    * @param colors セットするColor達
    */
-  public void setColorSchemeColors(int... colors) {
+  public void setColorSchemeColors(@ColorInt int... colors) {
     // FIXME Add @NonNull to the argument
     ensureTarget();
     mCircleView.setProgressColorSchemeColors(colors);
@@ -655,8 +662,37 @@ public class WaveSwipeRefreshLayout extends ViewGroup
         return mTarget.getScrollY() > 0;
       }
     } else {
+      final RecyclerView recyclerView = findRecyclerViewRecursively(mTarget);
+      if (recyclerView != null
+        && recyclerView.getAdapter() != null
+        && recyclerView.getAdapter().getItemCount() > 0
+        && recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+        final LinearLayoutManager linearLayoutManager = (LinearLayoutManager)recyclerView.getLayoutManager();
+        final int index = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
+        return index == -1 || linearLayoutManager.findFirstCompletelyVisibleItemPosition() > 0;
+      }
       return ViewCompat.canScrollVertically(mTarget, -1);
     }
+  }
+
+  private RecyclerView findRecyclerViewRecursively(View view) {
+    if (view instanceof RecyclerView) {
+      return (RecyclerView)view;
+    }
+
+    if (view instanceof ViewGroup) {
+      final ViewGroup parent = (ViewGroup)view;
+
+      for (int i = 0; i < parent.getChildCount(); i++) {
+        final RecyclerView child = findRecyclerViewRecursively(parent.getChildAt(i));
+
+        if (child != null) {
+          return child;
+        }
+      }
+    }
+
+    return null;
   }
 
   /**
@@ -793,11 +829,11 @@ public class WaveSwipeRefreshLayout extends ViewGroup
       mProgress.stop();
     }
 
-    public void setProgressColorSchemeColors(@NonNull int... colors) {
+    public void setProgressColorSchemeColors(@NonNull @ColorInt int... colors) {
       mProgress.setColorSchemeColors(colors);
     }
 
-    public void setProgressColorSchemeColorsFromResource(@IdRes int... resources) {
+    public void setProgressColorSchemeColorsFromResource(@ColorRes int... resources) {
       final Resources res = getResources();
       final int[] colorRes = new int[resources.length];
 

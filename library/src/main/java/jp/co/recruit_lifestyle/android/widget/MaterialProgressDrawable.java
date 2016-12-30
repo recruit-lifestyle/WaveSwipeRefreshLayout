@@ -28,6 +28,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
@@ -182,7 +183,7 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
     /**
      * Update the background color of the circle image view.
      */
-    public void setBackgroundColor(int color) {
+    public void setBackgroundColor(@ColorInt int color) {
         mRing.setBackgroundColor(color);
     }
 
@@ -193,7 +194,7 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
      *
      * @param colors
      */
-    public void setColorSchemeColors(int... colors) {
+    public void setColorSchemeColors(@ColorInt int... colors) {
         mRing.setColors(colors);
         mRing.setColorIndex(0);
     }
