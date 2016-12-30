@@ -668,7 +668,8 @@ public class WaveSwipeRefreshLayout extends ViewGroup
         && recyclerView.getAdapter().getItemCount() > 0
         && recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
         final LinearLayoutManager linearLayoutManager = (LinearLayoutManager)recyclerView.getLayoutManager();
-        return linearLayoutManager.findFirstCompletelyVisibleItemPosition() > 0;
+        final int index = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
+        return index == -1 || linearLayoutManager.findFirstCompletelyVisibleItemPosition() > 0;
       }
       return ViewCompat.canScrollVertically(mTarget, -1);
     }
